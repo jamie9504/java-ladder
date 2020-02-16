@@ -6,13 +6,13 @@ public class ParticipantName {
 
     public ParticipantName(String name) {
         name = name.trim();
-        vaildNameLength(name);
+        validNameLength(name);
         this.name = name;
     }
 
-    private static void vaildNameLength(String name) {
+    private static void validNameLength(String name) {
         if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException("참가자 이름은 5자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException("참가자 이름은 1자 ~ 5자 이내여야 합니다..");
         }
     }
 
