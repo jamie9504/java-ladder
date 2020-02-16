@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +13,12 @@ public class ParticipantFactoryTest {
     void getParticipantNames() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
         ParticipantFactory participantFactory = new ParticipantFactory(names);
-        assertThat(participantFactory.getNames().get(0).getName()).isEqualTo("제일미");
-        assertThat(participantFactory.getNames().get(1).getName()).isEqualTo("제이미");
-        assertThat(participantFactory.getNames().get(2).getName()).isEqualTo("제삼미");
-        assertThat(participantFactory.getNames().get(3).getName()).isEqualTo("제 사 미");
-        assertThat(participantFactory.getNames().get(4).getName()).isEqualTo("제오미");
+        List<String> participantNames = participantFactory.getNames();
+
+        assertThat(participantNames.get(0)).isEqualTo("제일미");
+        assertThat(participantNames.get(1)).isEqualTo("제이미");
+        assertThat(participantNames.get(2)).isEqualTo("제삼미");
+        assertThat(participantNames.get(3)).isEqualTo("제 사 미");
+        assertThat(participantNames.get(4)).isEqualTo("제오미");
     }
 }

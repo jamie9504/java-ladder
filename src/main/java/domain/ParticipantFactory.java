@@ -27,7 +27,11 @@ public class ParticipantFactory {
         return participants;
     }
 
-    public List<Participant> getNames() {
-        return participants;
+    public List<String> getNames() {
+        List<String> participantNames = new ArrayList<>();
+        for(Participant participant : participants) {
+            participantNames.add(participant.getName());
+        }
+        return participantNames;
     }
 }

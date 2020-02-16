@@ -11,10 +11,10 @@ public class ProductFactoryTest {
     void getParticipantNames() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
         ProductFactory productFactory = new ProductFactory(names, 5);
-        assertThat(productFactory.getNames().get(0).getName()).isEqualTo("제일미");
-        assertThat(productFactory.getNames().get(1).getName()).isEqualTo("제이미");
-        assertThat(productFactory.getNames().get(2).getName()).isEqualTo("제삼미");
-        assertThat(productFactory.getNames().get(3).getName()).isEqualTo("제 사 미");
-        assertThat(productFactory.getNames().get(4).getName()).isEqualTo("제오미");
+        assertThat(productFactory.getNames().get(0)).isEqualTo("제일미");
+        assertThat(productFactory.getNames().get(1)).isEqualTo("제이미");
+        assertThat(productFactory.getNames().get(2)).isEqualTo("제삼미");
+        assertThat(productFactory.getNames().get(3)).isEqualTo("제 사 미");
+        assertThat(productFactory.getNames().get(4)).isEqualTo("제오미");
     }
 }
