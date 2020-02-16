@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -16,5 +17,13 @@ public class LadderNumberFactoryTest {
         assertThat(ladderNumbers.get(0)).isEqualTo(1);
         assertThat(ladderNumbers.get(1)).isEqualTo(2);
         assertThat(ladderNumbers.get(2)).isEqualTo(3);
+    }
+
+    @DisplayName("수량은 2 이상이어야 함")
+    @Test
+    void makeLadderNumberException() {
+        assertThatThrownBy(() -> new LadderNumberFactory(1))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("2");
     }
 }
