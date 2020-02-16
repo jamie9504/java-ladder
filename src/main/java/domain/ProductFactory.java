@@ -10,7 +10,7 @@ public class ProductFactory implements ItemFactory {
 
     private final List<Product> products;
 
-    public ProductFactory(String names, int limitSize) {
+    public ProductFactory(String names, ItemFactory itemFactory) {
         List<String> splitNames = split(names);
         this.products = makeProductName(splitNames);
     }

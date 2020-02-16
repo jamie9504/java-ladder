@@ -14,7 +14,7 @@ public class ProductFactoryTest {
     static void setProducts() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
         ParticipantFactory participantFactory = new ParticipantFactory(names);
-        productFactory = new ProductFactory(names, ParticipantFactory);
+        productFactory = new ProductFactory(names, participantFactory);
     }
 
     @DisplayName("상품이 잘 셋팅했는지 확인")
