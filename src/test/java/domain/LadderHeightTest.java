@@ -23,6 +23,6 @@ public class LadderHeightTest {
     void exceptionHeightNotMoreThan(int height) {
         assertThatThrownBy(() -> new LadderHeight(height))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("1 이상 ");
+            .hasMessageContaining("커야합니다.");
     }
 }
