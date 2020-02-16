@@ -21,5 +21,6 @@ public class LadderNumberTest {
     void numberEquals() {
         LadderNumber ladderNumber = new LadderNumber(1);
         assertThat(ladderNumber.equals(1)).isTrue();
+        assertThat(ladderNumber.equals(ladderNumber)).isTrue();
     }
 }

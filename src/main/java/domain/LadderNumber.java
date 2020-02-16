@@ -14,4 +14,12 @@ public class LadderNumber {
             throw new IllegalArgumentException("사다리 번호는 양수여야 합니다.");
         }
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object.getClass() == Integer.class) {
+            return this.ladderNumber == (int) object;
+        }
+        return super.equals(object);
+    }
 }
