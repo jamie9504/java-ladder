@@ -30,12 +30,4 @@ public class ParticipantTest {
     void getNumber() {
         assertThat(jamie.getNumber()).isEqualTo(4);
     }
-
-    @DisplayName("사다리 번호는 양수여야 함")
-    @Test
-    void numberNotNative() {
-        assertThatThrownBy(() -> new Participant(jamieName, -1))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("양수");
-    }
 }
