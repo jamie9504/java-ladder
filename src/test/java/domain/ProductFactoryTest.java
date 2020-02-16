@@ -13,7 +13,8 @@ public class ProductFactoryTest {
     @BeforeAll
     static void setProducts() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
-        productFactory = new ProductFactory(names, 5);
+        ParticipantFactory participantFactory = new ParticipantFactory(names);
+        productFactory = new ProductFactory(names, ParticipantFactory);
     }
 
     @DisplayName("상품이 잘 셋팅했는지 확인")
