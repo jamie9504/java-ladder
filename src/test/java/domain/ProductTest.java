@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,5 +15,15 @@ public class ProductTest {
     void getProductName(String name) {
         Product product = new Product(name);
         assertThat(product.getName()).isEqualTo(name.trim());
+    }
+
+    @DisplayName("참가자 이름이 1글자 미만이거나 50글자 초과인 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"",
+        "영일이삼사오육칠팔구십영일이삼사오육칠팔구십영일이삼사오육칠팔구십영일이삼사오육칠팔구십영일이삼사오육칠팔구십영일이삼사오육칠팔구십영"})
+    void exceptionParticipantName(String name) {
+        assertThatThrownBy(() -> new Product(name))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("이름은");
     }
 }
