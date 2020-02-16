@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductFactory {
+public class ProductFactory implements ItemFactory {
 
     private final static String SPLIT_DELIMITER = ",";
 
