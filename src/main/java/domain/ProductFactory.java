@@ -27,6 +27,7 @@ public class ProductFactory implements ItemFactory {
         return products;
     }
 
+    @Override
     public List<String> getNames() {
         List<String> productNames = new ArrayList<>();
         for(Product product : products) {

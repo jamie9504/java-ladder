@@ -23,6 +23,7 @@ public class Participant implements Item {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }

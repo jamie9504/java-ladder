@@ -23,6 +23,7 @@ public class Product implements Item {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }

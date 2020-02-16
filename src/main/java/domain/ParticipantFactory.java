@@ -27,6 +27,7 @@ public class ParticipantFactory implements ItemFactory {
         return participants;
     }
 
+    @Override
     public List<String> getNames() {
         List<String> participantNames = new ArrayList<>();
         for(Participant participant : participants) {
