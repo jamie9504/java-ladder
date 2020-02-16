@@ -1,7 +1,6 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,7 @@ public class ParticipantTest {
     @Test
     static void makeParticipant() {
         jamieName = new ParticipantName("제이미");
-        jamie = new Participant(jamieName, 4);
+        jamie = new Participant(jamieName, new LadderNumber(4));
     }
 
     @DisplayName("자신의 이름을 알려줌")
@@ -25,9 +24,9 @@ public class ParticipantTest {
         assertThat(jamie.getName()).isEqualTo("제이미");
     }
 
-    @DisplayName("사다리의 번호를 알려줌")
+    @DisplayName("사다리의 번호가 맞는지 확인함")
     @Test
     void getNumber() {
-        assertThat(jamie.getNumber()).isEqualTo(4);
+        assertThat(jamie.isSameNumber(4)).isTrue();
     }
 }

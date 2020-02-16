@@ -3,9 +3,9 @@ package domain;
 public class Participant {
 
     private final ParticipantName name;
-    private final int number;
+    private final LadderNumber number;
 
-    public Participant(ParticipantName name, int number) {
+    public Participant(ParticipantName name, LadderNumber number) {
         this.name = name;
         this.number = number;
     }
@@ -14,7 +14,7 @@ public class Participant {
         return this.name.getName();
     }
 
-    public int getNumber() {
-        return this.number;
+    public boolean isSameNumber(int number) {
+        return this.number.equals(number);
     }
 }
