@@ -37,12 +37,12 @@ public class ProductFactoryTest {
     @DisplayName("참여인원보다 상품이 더 많으면 예외")
     @Test
     void exceptionMoreParticipantFactory() {
-        String namesParticipant = "제일미,  제이미,제삼미, 제 사 미, 제오미, 제육미";
+        String namesParticipant = "제일미,  제이미,제삼미, 제 사 미, 제오미";
         ParticipantFactory participantFactory = new ParticipantFactory(namesParticipant);
-        String namesProduct = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
+        String namesProduct = "제일미,  제이미,제삼미, 제 사 미, 제오미 , 제유김";
 
         assertThatThrownBy(() -> new ProductFactory(namesProduct, participantFactory))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("많");
+            .hasMessageContaining("많습니다.");
     }
 }
