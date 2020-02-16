@@ -1,6 +1,6 @@
 package domain;
 
-public class Participant {
+public class Participant implements Item {
 
     private final static int NAME_LENGTH_MORE_THAN = 1;
     private final static int NAME_LENGTH_LESS_THAN_OR_EQUAL_TO = 5;
