@@ -42,7 +42,7 @@ public class ParticipantFactoryTest {
 
     @DisplayName("참가자가 2명보다 작음")
     @ParameterizedTest
-    @ValueSource(strings = {"제일미", ", , ", "제일미, ,"})
+    @ValueSource(strings = {"제일미", "제일미,, ,", "제일미, ,", "  ,   , "})
     void exceptionLessThan(String names) {
         assertThatThrownBy(() -> new ParticipantFactory(names))
             .isInstanceOf(IllegalArgumentException.class)
