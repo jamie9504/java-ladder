@@ -2,6 +2,9 @@ package domain;
 
 public class LadderNumber {
 
+    private final static int VALID_NUMBER_MORE = 0;
+    private final static String EXCEPTION_MESSAGE_VALID_POSITIVE = "사다리 번호는 양수여야 합니다.";
+
     private final int ladderNumber;
 
     public LadderNumber(int number) {
@@ -10,8 +13,8 @@ public class LadderNumber {
     }
 
     private void validPositive(int number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException("사다리 번호는 양수여야 합니다.");
+        if (number <= VALID_NUMBER_MORE) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_VALID_POSITIVE);
         }
     }
 

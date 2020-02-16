@@ -7,6 +7,7 @@ import java.util.List;
 public class ParticipantNameFactory {
 
     private final static String SPLIT_DELIMITER = ",";
+
     private final List<ParticipantName> participantNames;
 
     public ParticipantNameFactory(String names) {
@@ -20,7 +21,7 @@ public class ParticipantNameFactory {
 
     private List<ParticipantName> makeParticipantName(List<String> splitNames) {
         List<ParticipantName> participantNames = new ArrayList<>();
-        for(String splitName : splitNames) {
+        for (String splitName : splitNames) {
             participantNames.add(new ParticipantName(splitName));
         }
         return participantNames;
