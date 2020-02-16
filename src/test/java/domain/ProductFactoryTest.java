@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -31,5 +32,17 @@ public class ProductFactoryTest {
     @Test
     void getProductCounts() {
         assertThat(productFactory.getCount()).isEqualTo(5);
+    }
+
+    @DisplayName("참여인원보다 상품이 더 많으면 예외")
+    @Test
+    void exceptionMoreParticipantFactory() {
+        String namesParticipant = "제일미,  제이미,제삼미, 제 사 미, 제오미, 제육미";
+        ParticipantFactory participantFactory = new ParticipantFactory(namesParticipant);
+        String namesProduct = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
+
+        assertThatThrownBy(() -> new ProductFactory(namesProduct, participantFactory))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("많");
     }
 }
