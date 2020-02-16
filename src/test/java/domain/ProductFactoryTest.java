@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class ProductFactoryTest {
 
     private static ProductFactory productFactory;
+
     @BeforeAll
     static void setProducts() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
@@ -28,6 +29,6 @@ public class ProductFactoryTest {
     @DisplayName("상품의 개수를 확인")
     @Test
     void getProductCounts() {
-        assertThat(productFactory.getSize()).isEqualTo(5);
+        assertThat(productFactory.getCount()).isEqualTo(5);
     }
 }

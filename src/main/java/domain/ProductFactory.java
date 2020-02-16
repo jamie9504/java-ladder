@@ -30,9 +30,14 @@ public class ProductFactory implements ItemFactory {
     @Override
     public List<String> getNames() {
         List<String> productNames = new ArrayList<>();
-        for(Product product : products) {
+        for (Product product : products) {
             productNames.add(product.getName());
         }
         return productNames;
+    }
+
+    @Override
+    public int getCount() {
+        return products.size();
     }
 }

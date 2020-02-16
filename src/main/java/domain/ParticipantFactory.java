@@ -30,12 +30,13 @@ public class ParticipantFactory implements ItemFactory {
     @Override
     public List<String> getNames() {
         List<String> participantNames = new ArrayList<>();
-        for(Participant participant : participants) {
+        for (Participant participant : participants) {
             participantNames.add(participant.getName());
         }
         return participantNames;
     }
 
+    @Override
     public int getCount() {
         return participants.size();
     }
