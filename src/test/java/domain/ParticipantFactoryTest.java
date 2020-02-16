@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ParticipantFactoryTest {
 
@@ -39,10 +41,9 @@ public class ParticipantFactoryTest {
     }
 
     @DisplayName("참가자가 2명보다 작음")
-    @Test
-    void exceptionLessThan() {
-        String names = "제일미";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"제일미", ", , ", "제일미, ,"})
+    void exceptionLessThan(String names) {
         assertThatThrownBy(() -> new ParticipantFactory(names))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("인원");
