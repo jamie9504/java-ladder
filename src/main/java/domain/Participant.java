@@ -5,7 +5,7 @@ public class Participant {
     private final ParticipantName name;
     private final LadderNumber number;
 
-    public Participant(ParticipantName name, LadderNumber number) {
+    Participant(ParticipantName name, LadderNumber number) {
         this.name = name;
         this.number = number;
     }

@@ -10,7 +10,7 @@ public class ParticipantName {
 
     private final String name;
 
-    public ParticipantName(String name) {
+    ParticipantName(String name) {
         name = name.trim();
         validNameLength(name);
         this.name = name;

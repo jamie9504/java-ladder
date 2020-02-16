@@ -7,7 +7,7 @@ public class LadderNumber {
 
     private final int ladderNumber;
 
-    public LadderNumber(int number) {
+    LadderNumber(int number) {
         validPositive(number);
         this.ladderNumber = number;
     }
