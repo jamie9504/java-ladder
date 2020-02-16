@@ -24,6 +24,6 @@ public class ProductTest {
     void exceptionParticipantName(String name) {
         assertThatThrownBy(() -> new Product(name))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("이름은");
+            .hasMessageContaining("항목은");
     }
 }
