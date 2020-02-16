@@ -2,19 +2,28 @@ package domain;
 
 public class Participant {
 
-    private final ParticipantName name;
-    private final LadderNumber number;
+    private final static int NAME_LENGTH_MORE_THAN = 1;
+    private final static int NAME_LENGTH_LESS_THAN_OR_EQUAL_TO = 5;
+    private final static String EXCEPTION_MESSAGE =
+        "참가자 이름은 " + NAME_LENGTH_MORE_THAN + "자 ~ " + NAME_LENGTH_LESS_THAN_OR_EQUAL_TO
+            + "자 이내여야 합니다.";
 
-    Participant(ParticipantName name, LadderNumber number) {
+    private final String name;
+
+    Participant(String name) {
+        name = name.trim();
+        validNameLength(name);
         this.name = name;
-        this.number = number;
+    }
+
+    private static void validNameLength(String name) {
+        if (name.length() < NAME_LENGTH_MORE_THAN
+            || name.length() > NAME_LENGTH_LESS_THAN_OR_EQUAL_TO) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
     }
 
     public String getName() {
-        return this.name.getName();
-    }
-
-    public boolean isSameNumber(int number) {
-        return this.number.equals(number);
+        return name;
     }
 }

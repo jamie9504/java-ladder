@@ -1,32 +1,28 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ParticipantTest {
 
-    static ParticipantName jamieName;
-    static Participant jamie;
-
-    @BeforeAll
-    @Test
-    static void makeParticipant() {
-        jamieName = new ParticipantName("제이미");
-        jamie = new Participant(jamieName, new LadderNumber(4));
+    @DisplayName("참가자 이름을 알려줌, 단 앞 뒤 공백은 제거할 것")
+    @ParameterizedTest
+    @ValueSource(strings = {"제이미", " 제이미", "제이미 ", "  제이미    "})
+    void getParticipantName(String name) {
+        Participant participant = new Participant(name);
+        assertThat(participant.getName()).isEqualTo(name.trim());
     }
 
-    @DisplayName("자신의 이름을 알려줌")
-    @Test
-    void getName() {
-        assertThat(jamie.getName()).isEqualTo("제이미");
-    }
-
-    @DisplayName("사다리의 번호가 맞는지 확인함")
-    @Test
-    void getNumber() {
-        assertThat(jamie.isSameNumber(4)).isTrue();
+    @DisplayName("참가자 이름이 1글자 미만이거나 5글자를 초과인 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "제일미제이미"})
+    void exceptionParticipantName(String name) {
+        assertThatThrownBy(() -> new Participant(name))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("이름은");
     }
 }
