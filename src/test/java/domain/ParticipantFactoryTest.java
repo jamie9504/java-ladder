@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,5 +36,15 @@ public class ParticipantFactoryTest {
         int participantCounts = participantFactory.getCount();
 
         assertThat(participantCounts).isEqualTo(5);
+    }
+
+    @DisplayName("참가자가 2명보다 작음")
+    @Test
+    void exceptionLessThan() {
+        String names = "제일미";
+
+        assertThatThrownBy(() -> new ParticipantFactory(names))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("인원");
     }
 }

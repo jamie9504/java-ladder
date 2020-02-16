@@ -2,10 +2,10 @@ package domain;
 
 public class Product implements Item {
 
-    private final static int NAME_LENGTH_MORE_THAN = 1;
-    private final static int NAME_LENGTH_LESS_THAN_OR_EQUAL_TO = 50;
+    private final static int NAME_LENGTH_MORE_THAN_NUMBER = 1;
+    private final static int NAME_LENGTH_LESS_THAN_OR_EQUAL_TO_NUMBER = 50;
     private final static String EXCEPTION_MESSAGE =
-        "당첨 항목은 " + NAME_LENGTH_MORE_THAN + "자 ~ " + NAME_LENGTH_LESS_THAN_OR_EQUAL_TO
+        "당첨 항목은 " + NAME_LENGTH_MORE_THAN_NUMBER + "자 ~ " + NAME_LENGTH_LESS_THAN_OR_EQUAL_TO_NUMBER
             + "자 이내여야 합니다.";
 
     private final String name;
@@ -17,8 +17,8 @@ public class Product implements Item {
     }
 
     private static void validNameLength(String name) {
-        if (name.length() < NAME_LENGTH_MORE_THAN
-            || name.length() > NAME_LENGTH_LESS_THAN_OR_EQUAL_TO) {
+        if (name.length() < NAME_LENGTH_MORE_THAN_NUMBER
+            || name.length() > NAME_LENGTH_LESS_THAN_OR_EQUAL_TO_NUMBER) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
