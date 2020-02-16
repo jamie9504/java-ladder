@@ -50,4 +50,8 @@ public class ProductFactory implements ItemFactory {
     public int getCount() {
         return products.size();
     }
+
+    public boolean isLessThan(ItemFactory itemFactory) {
+        return products.size() < itemFactory.getCount();
+    }
 }

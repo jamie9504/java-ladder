@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ProductFactoryTest {
+
     private static ParticipantFactory participantFactory;
     private static ProductFactory productFactory;
 
@@ -47,13 +48,11 @@ public class ProductFactoryTest {
     @DisplayName("참여인원보다 상품이 적으면 True")
     @Test
     void checkLessThan() {
-        assertThat(productFactory.isLessThan(ParticipantFactory)).isFalse();
+        assertThat(productFactory.isLessThan(participantFactory)).isFalse();
 
         String namesProduct = "제일미,  제이미,제삼미, 제 사 미";
         ProductFactory productFactory = new ProductFactory(namesProduct, participantFactory);
 
-        assertThat(productFactory.isLessThan(ParticipantFactory)).isTrue();
-
-
+        assertThat(productFactory.isLessThan(participantFactory)).isTrue();
     }
 }
