@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,5 +14,12 @@ public class LadderNumberTest {
         assertThatThrownBy(() -> new LadderNumber(-1))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("양수");
+    }
+
+    @DisplayName("사다리 번호와 번호가 같은지 확인")
+    @Test
+    void numberEquals() {
+        LadderNumber ladderNumber = new LadderNumber(1);
+        assertThat(ladderNumber.equals(1)).isTrue();
     }
 }
