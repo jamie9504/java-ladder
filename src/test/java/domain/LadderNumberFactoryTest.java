@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class LadderNumberFactoryTest {
 
-    @DisplayName("수량을 입력하였을 때, 그 만큼 Ladder Number들을 생성해주는지 확인");
+    @DisplayName("수량을 입력하였을 때, 그 만큼 Ladder Number들을 생성해주는지 확인")
     @Test
     void makeLadderNumber() {
         LadderNumberFactory ladderNumberFactory = new LadderNumberFactory(3);
