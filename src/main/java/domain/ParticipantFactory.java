@@ -35,4 +35,8 @@ public class ParticipantFactory implements ItemFactory {
         }
         return participantNames;
     }
+
+    public int getCount() {
+        return participants.size();
+    }
 }
