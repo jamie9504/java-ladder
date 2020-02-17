@@ -48,4 +48,10 @@ public class ParticipantsTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("인원");
     }
+
+    @DisplayName("가장 큰 참가자 이름 길이를 가져옴")
+    @Test
+    void checkMaxSize() {
+        assertThat(participants.getMaxNameLength()).isEqualTo(5);
+    }
 }
