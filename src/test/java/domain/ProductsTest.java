@@ -60,6 +60,6 @@ public class ProductsTest {
     @DisplayName("가장 큰 상품이름 길이를 가져옴")
     @Test
     void checkMaxSize() {
-        assertThat(products.getMaxNameSize()).isEqualTo(5);
+        assertThat(products.getMaxNameLength()).isEqualTo(5);
     }
 }
