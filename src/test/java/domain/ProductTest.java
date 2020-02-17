@@ -31,7 +31,7 @@ public class ProductTest {
 
     @DisplayName("상품 이름 길이를 가져옴")
     @Test
-    void getProductionNameSize() {
+    void getProductionNameLength() {
         Product product = new Product("제이미");
         assertThat(product.getNameLength()).isEqualTo(3);
     }

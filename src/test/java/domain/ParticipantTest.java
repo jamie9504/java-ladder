@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +25,12 @@ public class ParticipantTest {
         assertThatThrownBy(() -> new Participant(name))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("이름은");
+    }
+
+    @DisplayName("참가자 이름 길이를 알려줌")
+    @Test
+    void getParticipantNameLength() {
+        Participant participant = new Participant("제 이미");
+        assertThat(participant.getNameLength()).isEqualTo(4);
     }
 }
