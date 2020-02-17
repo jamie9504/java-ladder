@@ -14,7 +14,7 @@ public class LadderSizeTest {
     @Test
     void getHeight() {
         LadderSize ladderSize = new LadderSize(5);
-        assertThat(ladderSize.getHeight()).isEqualTo(5);
+        assertThat(ladderSize.getSize()).isEqualTo(5);
     }
 
     @DisplayName("사다리 높이가 0보다 크지 않으면 아니면 예외")

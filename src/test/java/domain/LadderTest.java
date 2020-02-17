@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
+
     private static LadderSize height;
     private static LadderSize width;
     private static Ladder ladderObject;
@@ -31,7 +32,7 @@ public class LadderTest {
     @Test
     void getLadderSize() {
         ladderObject.getHeight();
-        assertThat(ladderObject.getHeight()).isEqualTo(height);
-        assertThat(ladderObject.getWidth()).isEqualTo(width);
+        assertThat(ladderObject.getHeight()).isEqualTo(height.getSize());
+        assertThat(ladderObject.getWidth()).isEqualTo(width.getSize());
     }
 }
