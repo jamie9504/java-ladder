@@ -29,6 +29,7 @@ public class Participant implements Item {
         return name;
     }
 
+    @Override
     public int getNameLength() {
         return name.length();
     }
