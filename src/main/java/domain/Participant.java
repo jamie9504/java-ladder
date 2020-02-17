@@ -33,4 +33,17 @@ public class Participant implements Item {
     public int getNameLength() {
         return name.length();
     }
+
+    public double getNameSize() {
+        String[] names = name.split("");
+        double result = 0.0;
+        for(String name : names) {
+            if(name.matches("^[ㄱ-ㅎㅏ-ㅣ가-힣]*$")) {
+                result += 20.0 / 14;
+                continue;
+            }
+            result += 1.0;
+        }
+        return Math.round(result);
+    }
 }

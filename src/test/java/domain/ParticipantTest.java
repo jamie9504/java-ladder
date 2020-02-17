@@ -33,4 +33,16 @@ public class ParticipantTest {
         Participant participant = new Participant("제 이미");
         assertThat(participant.getNameLength()).isEqualTo(4);
     }
+
+    @DisplayName("참가자 이름 사이즈를 알려줌")
+    @Test
+    void getParticipantNameSize() {
+        Participant participant = new Participant("제 이미");
+        System.out.println(participant.getNameSize());
+        assertThat(participant.getNameSize()).isBetween(4.0, 10.0);
+
+        Participant participant2 = new Participant("jamie");
+        System.out.println(participant2.getNameSize());
+        assertThat(participant2.getNameSize()).isBetween(4.0, 10.0);
+    }
 }
