@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Products implements ItemFactory {
@@ -53,5 +54,13 @@ public class Products implements ItemFactory {
 
     public boolean isLessThan(ItemFactory itemFactory) {
         return products.size() < itemFactory.getCount();
+    }
+
+    public int getMaxNameSize() {
+        List<Integer> nameSizes = new ArrayList<>();
+        for (Product product : products) {
+            nameSizes.add(product.getName().length());
+        }
+        return Collections.max(nameSizes);
     }
 }
