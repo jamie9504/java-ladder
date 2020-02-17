@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ParticipantFactory implements ItemFactory {
+public class Participants implements ItemFactory {
 
     private final static String SPLIT_DELIMITER = ",";
     private final static String REPLACE_REGEX_JUST_BLANK = String
@@ -19,7 +19,7 @@ public class ParticipantFactory implements ItemFactory {
 
     private final List<Participant> participants;
 
-    public ParticipantFactory(String names) {
+    public Participants(String names) {
         List<String> splitNames = splitExceptJustBlank(names);
         validCountMoreThanOrEqualTo(splitNames);
         this.participants = makeParticipantName(splitNames);

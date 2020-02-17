@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ParticipantFactoryTest {
+public class ParticipantsTest {
 
-    private static ParticipantFactory participantFactory;
+    private static Participants participants;
 
     @BeforeAll
     static void setParticipants() {
         String names = "제일미,  제이미,제삼미, 제 사 미, 제오미 ";
-        participantFactory = new ParticipantFactory(names);
+        participants = new Participants(names);
     }
 
     @DisplayName("참가자 이름들을 확인")
     @Test
     void getParticipantNames() {
-        List<String> participantNames = participantFactory.getNames();
+        List<String> participantNames = participants.getNames();
 
         assertThat(participantNames.get(0)).isEqualTo("제일미");
         assertThat(participantNames.get(1)).isEqualTo("제이미");
@@ -35,7 +35,7 @@ public class ParticipantFactoryTest {
     @DisplayName("참가자 인원을 확인")
     @Test
     void getParticipantsCounts() {
-        int participantCounts = participantFactory.getCount();
+        int participantCounts = participants.getCount();
 
         assertThat(participantCounts).isEqualTo(5);
     }
@@ -44,7 +44,7 @@ public class ParticipantFactoryTest {
     @ParameterizedTest
     @ValueSource(strings = {"제일미", "제일미,, ,", "제일미, ,", "  ,   , "})
     void exceptionLessThan(String names) {
-        assertThatThrownBy(() -> new ParticipantFactory(names))
+        assertThatThrownBy(() -> new Participants(names))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("인원");
     }

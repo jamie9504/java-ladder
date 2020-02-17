@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductFactory implements ItemFactory {
+public class Products implements ItemFactory {
 
     private final static String SPLIT_DELIMITER = ",";
     private final static String EXCEPTION_MESSAGE_FORMAT_MORE_THAN = "상품(%d개)이 참가인원(%d명)보다 많습니다.";
 
     private final List<Product> products;
 
-    public ProductFactory(String names, ItemFactory itemFactory) {
+    public Products(String names, ItemFactory itemFactory) {
         List<String> splitNames = split(names);
         validCountLessThanOrEqualTo(splitNames, itemFactory);
         this.products = makeProductName(splitNames);
