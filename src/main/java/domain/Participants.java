@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Participants implements ItemFactory {
@@ -62,5 +63,13 @@ public class Participants implements ItemFactory {
     @Override
     public int getCount() {
         return participants.size();
+    }
+
+    public int getMaxNameLength() {
+        List<Integer> nameLengths = new ArrayList<>();
+        for (Participant participant : participants) {
+            nameLengths.add(participant.getNameLength());
+        }
+        return Collections.max(nameLengths);
     }
 }
