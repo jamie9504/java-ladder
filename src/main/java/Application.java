@@ -14,6 +14,7 @@ public class Application {
         LadderSize ladderHeight = makeLadderHeight();
         LadderSize ladderWidth = new LadderSize(participants.getCount());
         Ladder ladder = new Ladder(ladderHeight, ladderWidth);
+        OutputView.outputLadder(participants, ladder, products);
     }
 
     private static Participants makeParticipants() {

@@ -9,14 +9,14 @@ public class InputView {
 
     public static String inputParticipants() {
         System.out.println();
-        System.out.println("사다리타기에 참가할 인원을 적어주세요.(구분자 : ,(쉼표))");
+        System.out.println("사다리타기에 참가할 사람들을 모두 적어주세요.(구분자 : ,(쉼표))");
         System.out.print(": ");
         return scanner.nextLine();
     }
 
     public static String inputProducts() {
         System.out.println();
-        System.out.println("사다리타기 당첨 항목을 적어주세요.(구분자 : ,(쉼표))");
+        System.out.println("사다리타기 당첨 항목들을 모두 적어주세요.(구분자 : ,(쉼표))");
         System.out.print(": ");
         return scanner.nextLine();
     }

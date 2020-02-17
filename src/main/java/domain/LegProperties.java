@@ -1,21 +1,23 @@
 package domain;
 
 public enum LegProperties {
-    START_CENTER(0),
-    START_RIGHT(1),
-    MIDDLE_LEFT(-1),
-    MIDDLE_CENTER(0),
-    MIDDLE_RIGHT(1),
-    END_LEFT(-1),
-    END_CENTER(0);
+    LEFT(-1, "┤"),
+    CENTER(0, "│"),
+    RIGHT(1, "├");
 
     private final int moving;
+    private final String sign;
 
-    LegProperties(int moving) {
+    LegProperties(int moving, String sign) {
         this.moving = moving;
+        this.sign = sign;
     }
 
     public int getMoving() {
         return moving;
+    }
+
+    public String getSign() {
+        return sign;
     }
 }

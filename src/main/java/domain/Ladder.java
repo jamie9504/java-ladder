@@ -38,26 +38,26 @@ public class Ladder {
 
     private LegProperties drawStartLeg(boolean isDrawing) {
         if (isDrawing == true) {
-            return LegProperties.START_RIGHT;
+            return LegProperties.RIGHT;
         }
-        return LegProperties.START_CENTER;
+        return LegProperties.CENTER;
     }
 
     private LegProperties drawMiddleLeg(boolean isDrawing, LegProperties beforeLegProperties) {
         if (beforeLegProperties.getMoving() == 1) {
-            return LegProperties.MIDDLE_LEFT;
+            return LegProperties.LEFT;
         }
         if (isDrawing == true) {
-            return LegProperties.MIDDLE_RIGHT;
+            return LegProperties.RIGHT;
         }
-        return LegProperties.MIDDLE_CENTER;
+        return LegProperties.CENTER;
     }
 
     private LegProperties drawEndLeg(LegProperties beforeLegProperties) {
         if (beforeLegProperties.getMoving() == 1) {
-            return LegProperties.END_LEFT;
+            return LegProperties.LEFT;
         }
-        return LegProperties.END_CENTER;
+        return LegProperties.CENTER;
     }
 
     private boolean isDrawingByRandom() {
