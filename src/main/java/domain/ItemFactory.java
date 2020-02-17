@@ -7,4 +7,6 @@ public interface ItemFactory {
     List<String> getNames();
 
     int getCount();
+
+    int getMaxNameLength();
 }
