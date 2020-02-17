@@ -56,4 +56,10 @@ public class ProductsTest {
 
         assertThat(products.isLessThan(participants)).isTrue();
     }
+
+    @DisplayName("가장 큰 상품이름 길이를 가져옴")
+    @Test
+    void checkMaxSize() {
+        assertThat(products.getMaxNameSize()).isEqualTo(5);
+    }
 }
