@@ -28,34 +28,20 @@ public class Ladder {
 
     private List<LegProperties> makeLadderBySize(int width) {
         List<LegProperties> ladder = new ArrayList<>(width);
-        ladder.add(drawStartLeg(isDrawingByRandom()));
+        ladder.add(drawLeg(isDrawingByRandom(), LegProperties.CENTER));
         for (int i = 1; i < width - 1; i++) {
-            ladder.add(drawMiddleLeg(isDrawingByRandom(), ladder.get(i - 1)));
+            ladder.add(drawLeg(isDrawingByRandom(), ladder.get(i - 1)));
         }
-        ladder.add(drawEndLeg(ladder.get(width - 2)));
+        ladder.add(drawLeg(false, ladder.get(width - 2)));
         return ladder;
     }
 
-    private LegProperties drawStartLeg(boolean isDrawing) {
-        if (isDrawing == true) {
-            return LegProperties.RIGHT;
-        }
-        return LegProperties.CENTER;
-    }
-
-    private LegProperties drawMiddleLeg(boolean isDrawing, LegProperties beforeLegProperties) {
-        if (beforeLegProperties.getMoving() == 1) {
+    private LegProperties drawLeg(boolean isDrawing, LegProperties beforeLegProperties) {
+        if (beforeLegProperties.getMoving() == LegProperties.RIGHT.getMoving()) {
             return LegProperties.LEFT;
         }
         if (isDrawing == true) {
             return LegProperties.RIGHT;
-        }
-        return LegProperties.CENTER;
-    }
-
-    private LegProperties drawEndLeg(LegProperties beforeLegProperties) {
-        if (beforeLegProperties.getMoving() == 1) {
-            return LegProperties.LEFT;
         }
         return LegProperties.CENTER;
     }
