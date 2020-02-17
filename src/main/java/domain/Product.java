@@ -28,8 +28,7 @@ public class Product implements Item {
         return name;
     }
 
-    @Override
-    public int getNameLength() {
-        return name.length();
+    public int getNameSize() {
+        return getSize(name);
     }
 }

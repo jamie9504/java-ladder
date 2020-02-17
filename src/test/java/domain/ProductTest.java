@@ -29,10 +29,10 @@ public class ProductTest {
             .hasMessageContaining("항목은");
     }
 
-    @DisplayName("상품 이름 길이를 가져옴")
+    @DisplayName("상품 이름 크기를 가져옴")
     @Test
-    void getProductionNameLength() {
+    void getProductionNameSize() {
         Product product = new Product("제이미");
-        assertThat(product.getNameLength()).isEqualTo(3);
+        assertThat(product.getNameSize()).isBetween(3, 5);
     }
 }

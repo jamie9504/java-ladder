@@ -1,10 +1,10 @@
 package view;
 
+import domain.Item;
 import domain.Ladder;
 import domain.LegProperties;
 import domain.Participants;
 import domain.Products;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -15,16 +15,18 @@ public class OutputView {
     public static void outputLadder(Participants participants, Ladder ladder, Products products) {
         System.out.println("사다리 게임을 실행합니다.\n");
         int nameLengthFormatCriteria = Math
-            .max(participants.getMaxNameLength(), products.getMaxNameLength());
-        System.out.println(formattingName(participants.getNames(), nameLengthFormatCriteria));
+            .max(participants.getMaxNameSize(), products.getMaxNameSize());
+        System.out.println(formattingName(participants.getItems(), nameLengthFormatCriteria));
         System.out.print(formattingLadderHeight(ladder.getLadder(), nameLengthFormatCriteria));
-        System.out.println(formattingName(products.getNames(), nameLengthFormatCriteria));
+        System.out.println(formattingName(products.getItems(), nameLengthFormatCriteria));
     }
 
-    private static String formattingName(List<String> names, int nameLengthFormatCriteria) {
+    private static String formattingName(List<Item> items, int nameLengthFormatCriteria) {
         StringBuilder formattingNames = new StringBuilder();
-        for (String name : names) {
-            formattingNames.append(String.format(" [ %-" + nameLengthFormatCriteria + "s ]", name));
+        for (Item item : items) {
+            int blankCount = (nameLengthFormatCriteria - item.getNameSize()) / 2 + 1;
+            String justBlank = String.format("%" + blankCount + "s", " ");
+            formattingNames.append("[" + justBlank + item.getName() + justBlank + "] ");
         }
         return formattingNames.toString();
     }
@@ -51,7 +53,7 @@ public class OutputView {
 
     private static String formattingLadderProperties(LegProperties legProperties,
         int nameLengthFormatCriteria) {
-        int betweenSignCount = (nameLengthFormatCriteria + 5) / 2;
+        int betweenSignCount = (nameLengthFormatCriteria + 4) / 2;
         String justBlank = String.format("%" + betweenSignCount + "s", MAKE_LEG_NO_SIGN);
         String justHyphen = justBlank.replace(MAKE_LEG_NO_SIGN, MAKE_LEG_YES_SIGN);
         return makeALeg(legProperties, justBlank, justHyphen);

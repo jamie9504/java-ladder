@@ -8,5 +8,7 @@ public interface ItemFactory {
 
     int getCount();
 
-    int getMaxNameLength();
+    int getMaxNameSize();
+
+    List<Item> getItems();
 }

@@ -65,11 +65,21 @@ public class Participants implements ItemFactory {
         return participants.size();
     }
 
-    public int getMaxNameLength() {
-        List<Integer> nameLengths = new ArrayList<>();
+    @Override
+    public int getMaxNameSize() {
+        List<Integer> nameSizes = new ArrayList<>();
         for (Participant participant : participants) {
-            nameLengths.add(participant.getNameLength());
+            nameSizes.add(participant.getNameSize());
         }
-        return Collections.max(nameLengths);
+        return Collections.max(nameSizes);
+    }
+
+    @Override
+    public List<Item> getItems() {
+        List<Item> items = new ArrayList<>();
+        for(Participant participant : participants) {
+            items.add(participant);
+        }
+        return items;
     }
 }

@@ -56,11 +56,21 @@ public class Products implements ItemFactory {
         return products.size() < itemFactory.getCount();
     }
 
-    public int getMaxNameLength() {
-        List<Integer> nameLengths = new ArrayList<>();
+    @Override
+    public int getMaxNameSize() {
+        List<Integer> nameSizes = new ArrayList<>();
         for (Product product : products) {
-            nameLengths.add(product.getNameLength());
+            nameSizes.add(product.getNameSize());
         }
-        return Collections.max(nameLengths);
+        return Collections.max(nameSizes);
+    }
+
+    @Override
+    public List<Item> getItems() {
+        List<Item> items = new ArrayList<>();
+        for (Product product : products) {
+            items.add(product);
+        }
+        return items;
     }
 }
