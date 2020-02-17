@@ -5,28 +5,28 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Products implements ItemFactory {
+public class Products implements Items {
 
     private final static String SPLIT_DELIMITER = ",";
     private final static String EXCEPTION_MESSAGE_FORMAT_MORE_THAN = "상품(%d개)이 참가인원(%d명)보다 많습니다.";
 
     private final List<Product> products;
 
-    public Products(String names, ItemFactory itemFactory) {
+    public Products(String names, Items items) {
         List<String> splitNames = new ArrayList<>();
         splitNames.addAll(split(names));
-        validCountLessThanOrEqualTo(splitNames, itemFactory);
+        validCountLessThanOrEqualTo(splitNames, items);
         this.products = makeProductName(splitNames);
     }
 
-    private void validCountLessThanOrEqualTo(List<String> splitNames, ItemFactory itemFactory) {
-        if (splitNames.size() > itemFactory.getCount()) {
+    private void validCountLessThanOrEqualTo(List<String> splitNames, Items items) {
+        if (splitNames.size() > items.getCount()) {
             throw new IllegalArgumentException(String
                 .format(EXCEPTION_MESSAGE_FORMAT_MORE_THAN, splitNames.size(),
-                    itemFactory.getCount()));
+                    items.getCount()));
         }
-        if (splitNames.size() < itemFactory.getCount()) {
-            inputDummy(splitNames, itemFactory.getCount() - splitNames.size());
+        if (splitNames.size() < items.getCount()) {
+            inputDummy(splitNames, items.getCount() - splitNames.size());
         }
     }
 

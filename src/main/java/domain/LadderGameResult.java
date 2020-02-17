@@ -58,13 +58,11 @@ public class LadderGameResult {
         return 0;
     }
 
-//    public Map<Item, Item> viewByParticipant(String participantName) {
-//        if(participantName == "ALL") {
-//            return result;
-//        }
-//        if(participantName.contains(",")) {
-//
-//        }
-//
-//    }
+    /*public Map<Item, Item> viewByParticipant(String participantName) {
+
+    }*/
+
+    public Map<Item, Item> getResultAll() {
+        return result;
+    }
 }

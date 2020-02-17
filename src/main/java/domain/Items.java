@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public interface ItemFactory {
+public interface Items {
 
     List<String> getNames();
 

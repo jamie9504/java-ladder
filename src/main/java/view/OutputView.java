@@ -7,6 +7,7 @@ import domain.LegProperties;
 import domain.Participants;
 import domain.Products;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -40,7 +41,8 @@ public class OutputView {
     private static String formattingLadderHeight(List<List<LegProperties>> ladder,
         int nameLengthFormatCriteria) {
         StringBuilder formattingLadders = new StringBuilder();
-        for (List<LegProperties> ladderWidth : ladder) {
+        for (List<LegProperties
+            > ladderWidth : ladder) {
             formattingLadders.append(formattingLadderWidth(ladderWidth, nameLengthFormatCriteria));
             formattingLadders.append("\n");
         }
@@ -83,7 +85,11 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void viewAllByParticipant(LadderGameResult ladderGameResult) {
-
+    public static void getResultAll(LadderGameResult ladderGameResult) {
+        System.out.println();
+        Map<Item, Item> items = ladderGameResult.getResultAll();
+        for(Item participant : items.keySet()) {
+            System.out.println(participant.getName() + " : " + items.get(participant).getName());
+        }
     }
 }

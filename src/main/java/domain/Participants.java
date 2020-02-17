@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Participants implements ItemFactory {
+public class Participants implements Items {
 
     private final static String SPLIT_DELIMITER = ",";
     private final static String REPLACE_REGEX_BLANK = ("  *");

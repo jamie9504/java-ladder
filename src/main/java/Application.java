@@ -16,6 +16,7 @@ public class Application {
 
         LadderGameResult ladderGameResult = LadderGame.start(participants, products, ladderHeight);
         OutputView.outputLadder(ladderGameResult);
+        OutputView.getResultAll(ladderGameResult);
     }
 
     private static Participants makeParticipants() {
