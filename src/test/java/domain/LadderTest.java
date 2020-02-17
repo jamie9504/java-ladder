@@ -11,10 +11,12 @@ public class LadderTest {
     @DisplayName("사다리가져오기")
     @Test
     void getLadder() {
-        Ladder ladderObject = new Ladder(new LadderHeight(5), 5);
-        List<byte[]> ladder = ladderObject.getLadder();
-        assertThat(ladder.get(0)[0]).isEqualTo(0);
-        assertThat(ladder.get(4)[4]).isEqualTo(0);
-    }
+        LadderSize height = new LadderSize(5);
+        LadderSize width = new LadderSize(7);
+        Ladder ladderObject = new Ladder(height, width);
+        List<List<LegProperties>> ladder = ladderObject.getLadder();
+        assertThat(ladder.get(0).get(0).getMoving()).isBetween(-1, 1);
+        assertThat(ladder.get(4).get(4).getMoving()).isBetween(-1, 1);
 
+    }
 }

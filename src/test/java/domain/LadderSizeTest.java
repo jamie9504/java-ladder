@@ -8,20 +8,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LadderHeightTest {
+public class LadderSizeTest {
 
     @DisplayName("사다리 높이 가져오기")
     @Test
     void getHeight() {
-        LadderHeight ladderHeight = new LadderHeight(5);
-        assertThat(ladderHeight.getHeight()).isEqualTo(5);
+        LadderSize ladderSize = new LadderSize(5);
+        assertThat(ladderSize.getHeight()).isEqualTo(5);
     }
 
     @DisplayName("사다리 높이가 0보다 크지 않으면 아니면 예외")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void exceptionHeightNotMoreThan(int height) {
-        assertThatThrownBy(() -> new LadderHeight(height))
+        assertThatThrownBy(() -> new LadderSize(height))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("커야합니다.");
     }

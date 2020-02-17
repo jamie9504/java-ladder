@@ -6,59 +6,61 @@ import java.util.Random;
 
 public class Ladder {
 
-    private final List<byte[]> ladder;
+    private static final Random random = new Random();
+    private final List<List<LegProperties>> ladder;
 
-    public Ladder(LadderHeight height, int size) {
-        ladder = makeLadderByHeight(height.getHeight(), size);
+    public Ladder(LadderSize height, LadderSize width) {
+        ladder = makeLadderByHeight(height.getSize(), width.getSize());
     }
 
-    private List<byte[]> makeLadderByHeight(int height, int size) {
-        List<byte[]> ladder = new ArrayList<>();
-        for(int i = 0; i < height; i++) {
-            ladder.add(makeLadderBySize(size));
-            System.out.print(i + " : " );
-            for(Byte byte2 : ladder.get(i)) {
-                System.out.print(byte2 + ", ");
-            }
-            System.out.println();
+    private List<List<LegProperties>> makeLadderByHeight(int height, int width) {
+        List<List<LegProperties>> ladder = new ArrayList<>(height);
+        for (int i = 0; i < height; i++) {
+            ladder.add(makeLadderBySize(width));
         }
         return ladder;
     }
 
-    private byte[] makeLadderBySize(int size) {
-        byte[] ladder = new byte[size];
-        byte a = 0;
-        for (int i = 0; i < size - 1; i++) {
-            if(a == 0) {
-                ladder[i] = randoms();
-                a = ladder[i];
-                continue;
-            }
-            ladder[i] = -1;
-            a = 0;
+    private List<LegProperties> makeLadderBySize(int width) {
+        List<LegProperties> ladder = new ArrayList<>(width);
+        ladder.add(drawStartLeg(isDrawingByRandom()));
+        for (int i = 1; i < width - 1; i++) {
+            ladder.add(drawMiddleLeg(isDrawingByRandom(), ladder.get(i - 1)));
         }
-        if(a==1) {
-            ladder[size - 1] = -1;
-        }
-        if(a==0) {
-            ladder[size - 1] = 0;
-        }
+        ladder.add(drawEndLeg(ladder.get(width - 2)));
         return ladder;
     }
 
-    private byte randoms() {
-        Random random = new Random();
-        int randomNo = random.nextInt(2);
-        if(randomNo == 0) {
-            return 0;
+    private LegProperties drawStartLeg(boolean isDrawing) {
+        if (isDrawing == true) {
+            return LegProperties.START_RIGHT;
         }
-        if(randomNo == 1) {
-            return 1;
-        }
-        return 2;
+        return LegProperties.START_CENTER;
     }
 
-    public List<byte[]> getLadder() {
+    private LegProperties drawMiddleLeg(boolean isDrawing, LegProperties beforeLegProperties) {
+        if (beforeLegProperties.getMoving() == 1) {
+            return LegProperties.MIDDLE_LEFT;
+        }
+        if (isDrawing == true) {
+            return LegProperties.MIDDLE_RIGHT;
+        }
+        return LegProperties.MIDDLE_CENTER;
+    }
+
+    private LegProperties drawEndLeg(LegProperties beforeLegProperties) {
+        if (beforeLegProperties.getMoving() == 1) {
+            return LegProperties.END_LEFT;
+        }
+        return LegProperties.END_CENTER;
+
+    }
+
+    private boolean isDrawingByRandom() {
+        return random.nextBoolean();
+    }
+
+    public List<List<LegProperties>> getLadder() {
         return ladder;
     }
 }
