@@ -20,7 +20,7 @@ public class ParticipantsTest {
         participants = new Participants(names);
     }
 
-    @DisplayName("참가자 이름들을 확인")
+    @DisplayName("참가자 이름들을 확인, 모든 공백제거")
     @Test
     void getParticipantNames() {
         List<String> participantNames = participants.getNames();
@@ -28,7 +28,7 @@ public class ParticipantsTest {
         assertThat(participantNames.get(0)).isEqualTo("제일미");
         assertThat(participantNames.get(1)).isEqualTo("제이미");
         assertThat(participantNames.get(2)).isEqualTo("제삼미");
-        assertThat(participantNames.get(3)).isEqualTo("제 사 미");
+        assertThat(participantNames.get(3)).isEqualTo("제사미");
         assertThat(participantNames.get(4)).isEqualTo("제오미");
     }
 
@@ -52,6 +52,14 @@ public class ParticipantsTest {
     @DisplayName("가장 큰 참가자 이름 사이즈를 가져옴")
     @Test
     void checkMaxSize() {
-        assertThat(participants.getMaxNameSize()).isEqualTo(6);
+        assertThat(participants.getMaxNameSize()).isGreaterThanOrEqualTo(3);
+    }
+
+    @DisplayName("중복 허용 안함")
+    @Test
+    void exceptionOverlapName() {
+        assertThatThrownBy(() -> new Participants("제이미, 제이미"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("제이미");
     }
 }

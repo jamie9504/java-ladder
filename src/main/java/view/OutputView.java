@@ -2,6 +2,7 @@ package view;
 
 import domain.Item;
 import domain.Ladder;
+import domain.LadderGameResult;
 import domain.LegProperties;
 import domain.Participants;
 import domain.Products;
@@ -12,10 +13,15 @@ public class OutputView {
     private final static String MAKE_LEG_NO_SIGN = " ";
     private final static String MAKE_LEG_YES_SIGN = "-";
 
-    public static void outputLadder(Participants participants, Ladder ladder, Products products) {
-        System.out.println("사다리 게임을 실행합니다.\n");
+    public static void outputLadder(LadderGameResult ladderGameResult) {
+        Participants participants = ladderGameResult.getParticipants();
+        Ladder ladder = ladderGameResult.getLadder();
+        Products products = ladderGameResult.getProducts();
+
+        System.out.println("\n사다리 게임을 실행합니다.\n");
         int nameLengthFormatCriteria = Math
             .max(participants.getMaxNameSize(), products.getMaxNameSize());
+
         System.out.println(formattingName(participants.getItems(), nameLengthFormatCriteria));
         System.out.print(formattingLadderHeight(ladder.getLadder(), nameLengthFormatCriteria));
         System.out.println(formattingName(products.getItems(), nameLengthFormatCriteria));
@@ -75,5 +81,9 @@ public class OutputView {
 
     public static void exceptionMessage(String message) {
         System.out.println(message);
+    }
+
+    public static void viewAllByParticipant(LadderGameResult ladderGameResult) {
+
     }
 }

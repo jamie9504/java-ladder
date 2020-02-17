@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,20 +45,20 @@ public class ProductsTest {
             .hasMessageContaining("많습니다.");
     }
 
-    @DisplayName("참여인원보다 상품이 적으면 True")
+    @DisplayName("참여인원보다 상품이 적으면 X를 심어줌")
     @Test
     void checkLessThan() {
-        Assertions.assertThat(ProductsTest.products.isLessThan(participants)).isFalse();
+        assertThat(products.getNames()).doesNotContain("X");
 
         String namesProduct = "제일미,  제이미,제삼미, 제 사 미";
         Products products = new Products(namesProduct, participants);
 
-        assertThat(products.isLessThan(participants)).isTrue();
+        assertThat(products.getNames()).contains("X");
     }
 
     @DisplayName("가장 큰 상품이름 사이즈를 가져옴")
     @Test
     void checkMaxSize() {
-        assertThat(products.getMaxNameSize()).isEqualTo(6);
+        assertThat(products.getMaxNameSize()).isGreaterThanOrEqualTo(5);
     }
 }

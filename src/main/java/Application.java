@@ -1,4 +1,5 @@
-import domain.Ladder;
+import controller.LadderGame;
+import domain.LadderGameResult;
 import domain.LadderSize;
 import domain.Participants;
 import domain.Products;
@@ -12,9 +13,9 @@ public class Application {
         Participants participants = makeParticipants();
         Products products = makeProducts(participants);
         LadderSize ladderHeight = makeLadderHeight();
-        LadderSize ladderWidth = new LadderSize(participants.getCount());
-        Ladder ladder = new Ladder(ladderHeight, ladderWidth);
-        OutputView.outputLadder(participants, ladder, products);
+
+        LadderGameResult ladderGameResult = LadderGame.start(participants, products, ladderHeight);
+        OutputView.outputLadder(ladderGameResult);
     }
 
     private static Participants makeParticipants() {

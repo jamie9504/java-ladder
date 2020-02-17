@@ -3,13 +3,14 @@ package domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Participants implements ItemFactory {
 
     private final static String SPLIT_DELIMITER = ",";
-    private final static String REPLACE_REGEX_JUST_BLANK = String
-        .format(" *%s|%s *", SPLIT_DELIMITER, SPLIT_DELIMITER);
+    private final static String REPLACE_REGEX_BLANK = ("  *");
     private final static String REPLACE_REGEX_MANY_SPLIT_DELIMITER = String
         .format("%s+", SPLIT_DELIMITER);
     private final static String REPLACE_REGEX_START_OR_END_SPLIT_DELIMITER = String
@@ -23,12 +24,25 @@ public class Participants implements ItemFactory {
     public Participants(String names) {
         List<String> splitNames = splitExceptJustBlank(names);
         validCountMoreThanOrEqualTo(splitNames);
+        validOverlapName(splitNames);
         this.participants = makeParticipantName(splitNames);
     }
 
+    private void validOverlapName(List<String> splitNames) {
+        Set noOverlapSplitNames = new HashSet<>(splitNames);
+        if (splitNames.size() == noOverlapSplitNames.size()) {
+            return;
+        }
+        for (String splitName : splitNames) {
+            if (!noOverlapSplitNames.remove(splitName)) {
+                throw new IllegalArgumentException("이름(" + splitName + ") 중복은 허용하지 않습니다.");
+            }
+        }
+    }
+
     private List<String> splitExceptJustBlank(String names) {
-        String noJustBlankNames = names.replaceAll(REPLACE_REGEX_JUST_BLANK, SPLIT_DELIMITER);
-        String noManySplitDelimiter = noJustBlankNames
+        String noBlankNames = names.replaceAll(REPLACE_REGEX_BLANK, BLANK);
+        String noManySplitDelimiter = noBlankNames
             .replaceAll(REPLACE_REGEX_MANY_SPLIT_DELIMITER, SPLIT_DELIMITER);
         String noStartOrEndSplitDelimiter = noManySplitDelimiter
             .replaceAll(REPLACE_REGEX_START_OR_END_SPLIT_DELIMITER, BLANK);

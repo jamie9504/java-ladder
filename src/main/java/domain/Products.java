@@ -13,7 +13,8 @@ public class Products implements ItemFactory {
     private final List<Product> products;
 
     public Products(String names, ItemFactory itemFactory) {
-        List<String> splitNames = split(names);
+        List<String> splitNames = new ArrayList<>();
+        splitNames.addAll(split(names));
         validCountLessThanOrEqualTo(splitNames, itemFactory);
         this.products = makeProductName(splitNames);
     }
@@ -23,6 +24,15 @@ public class Products implements ItemFactory {
             throw new IllegalArgumentException(String
                 .format(EXCEPTION_MESSAGE_FORMAT_MORE_THAN, splitNames.size(),
                     itemFactory.getCount()));
+        }
+        if (splitNames.size() < itemFactory.getCount()) {
+            inputDummy(splitNames, itemFactory.getCount() - splitNames.size());
+        }
+    }
+
+    private void inputDummy(List<String> splitNames, int count) {
+        for(int i = 0; i < count; i++) {
+            splitNames.add("X");
         }
     }
 
@@ -50,10 +60,6 @@ public class Products implements ItemFactory {
     @Override
     public int getCount() {
         return products.size();
-    }
-
-    public boolean isLessThan(ItemFactory itemFactory) {
-        return products.size() < itemFactory.getCount();
     }
 
     @Override
