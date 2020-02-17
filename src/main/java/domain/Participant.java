@@ -28,4 +28,8 @@ public class Participant implements Item {
     public String getName() {
         return name;
     }
+
+    public int getNameLength() {
+        return name.length();
+    }
 }
