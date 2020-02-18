@@ -1,20 +1,19 @@
 package domain;
 
+import static util.Split.splitExceptJustBlankWithDelimiter;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Products implements Items {
 
-    private final static String SPLIT_DELIMITER = ",";
     private final static String EXCEPTION_MESSAGE_FORMAT_MORE_THAN = "상품(%d개)이 참가인원(%d명)보다 많습니다.";
 
     private final List<Product> products;
 
     public Products(String names, Items items) {
-        List<String> splitNames = new ArrayList<>();
-        splitNames.addAll(split(names));
+        List<String> splitNames = splitExceptJustBlankWithDelimiter(names);
         validCountLessThanOrEqualTo(splitNames, items);
         this.products = makeProductName(splitNames);
     }
@@ -31,13 +30,9 @@ public class Products implements Items {
     }
 
     private void inputDummy(List<String> splitNames, int count) {
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             splitNames.add("X");
         }
-    }
-
-    private List<String> split(String names) {
-        return Arrays.asList(names.split(SPLIT_DELIMITER));
     }
 
     private List<Product> makeProductName(List<String> splitNames) {

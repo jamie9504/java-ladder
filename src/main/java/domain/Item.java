@@ -9,7 +9,7 @@ public interface Item {
         double result = 0.0;
         for(String name : names) {
             if(name.matches("^[ㄱ-ㅎㅏ-ㅣ가-힣]*$")) {
-                result += 20.0 / 14;
+                result += 2;
                 continue;
             }
             result += 1.0;
