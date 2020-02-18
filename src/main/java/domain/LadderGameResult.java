@@ -76,7 +76,6 @@ public class LadderGameResult {
         for(Item item : gameResult.keySet()) {
             if(!this.gameResult.get(item).getName().equals("X")) {
                 result.put(item, gameResult.get(item));
-                System.out.println(item.getName());
             }
         }
         return result;

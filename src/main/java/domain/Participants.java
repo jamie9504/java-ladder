@@ -1,6 +1,6 @@
 package domain;
 
-import static util.Split.splitExceptJustBlankWithDelimiter;
+import static util.SplitAndRefine.splitExceptJustBlankWithDelimiter;
 
 import java.util.ArrayList;
 import java.util.Collections;

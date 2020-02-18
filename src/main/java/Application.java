@@ -1,3 +1,5 @@
+import static util.SplitAndRefine.exceptJustBlankWithDelimiter;
+
 import controller.LadderGame;
 import domain.LadderGameResult;
 import domain.LadderSize;
@@ -20,7 +22,7 @@ public class Application {
         afterGame(ladderGameResult);
 
     }
-
+    
     private static void afterGame(LadderGameResult ladderGameResult) {
         OutputView.outputLadder(ladderGameResult);
         while (true) {
@@ -41,8 +43,7 @@ public class Application {
                     OutputView.outputLadder(ladderGameResult);
                     continue;
                 }
-                if (want.replaceAll(" *", "").replaceAll(",,*", ",").replaceAll("^,|,$", "")
-                    .contains(",")) {
+                if (exceptJustBlankWithDelimiter(want).contains(",")) {
                     OutputView.outputResultByParticipants(ladderGameResult, new Participants(want));
                     continue;
                 }

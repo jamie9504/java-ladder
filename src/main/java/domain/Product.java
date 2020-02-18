@@ -1,5 +1,7 @@
 package domain;
 
+import static util.FontSize.getFontSize;
+
 public class Product implements Item {
 
     private final static int NAME_LENGTH_MORE_THAN_NUMBER = 1;
@@ -29,6 +31,6 @@ public class Product implements Item {
     }
 
     public int getNameSize() {
-        return getSize(name);
+        return getFontSize(name);
     }
 }

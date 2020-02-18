@@ -1,13 +1,13 @@
 package util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static util.Split.splitExceptJustBlankWithDelimiter;
+import static util.SplitAndRefine.splitExceptJustBlankWithDelimiter;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SplitTest {
+public class SplitAndRefineTest {
 
     private final static String SPLIT_DELIMITER = ",";
 
