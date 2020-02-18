@@ -11,7 +11,7 @@ public class Participant implements Item {
 
     private final String name;
 
-    Participant(String name) {
+    public Participant(String name) {
         name = name.trim();
         validNameLength(name);
         this.name = name;
@@ -31,5 +31,13 @@ public class Participant implements Item {
 
     public int getNameSize() {
         return getSize(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Participant) {
+            return ((Participant) obj).name.equals(this.name);
+        }
+        return super.equals(obj);
     }
 }

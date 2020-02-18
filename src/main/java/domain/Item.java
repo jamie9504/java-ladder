@@ -18,4 +18,7 @@ public interface Item {
     };
 
     int getNameSize();
+
+    @Override
+    boolean equals(Object obj);
 }

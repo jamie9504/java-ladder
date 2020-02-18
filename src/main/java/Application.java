@@ -1,6 +1,7 @@
 import controller.LadderGame;
 import domain.LadderGameResult;
 import domain.LadderSize;
+import domain.Participant;
 import domain.Participants;
 import domain.Products;
 import java.util.InputMismatchException;
@@ -15,8 +16,41 @@ public class Application {
         LadderSize ladderHeight = makeLadderHeight();
 
         LadderGameResult ladderGameResult = LadderGame.start(participants, products, ladderHeight);
+
+        afterGame(ladderGameResult);
+
+    }
+
+    private static void afterGame(LadderGameResult ladderGameResult) {
         OutputView.outputLadder(ladderGameResult);
-        OutputView.getResultAll(ladderGameResult);
+        while (true) {
+            try {
+                String want = InputView.inputWhatYouWant();
+                if (want.equalsIgnoreCase("all")) {
+                    OutputView.outputResultAll(ladderGameResult);
+                    continue;
+                }
+                if (want.equalsIgnoreCase("ok")) {
+                    OutputView.outputResultNotDummy(ladderGameResult);
+                    continue;
+                }
+                if (want.equalsIgnoreCase("finish")) {
+                    return;
+                }
+                if (want.equalsIgnoreCase("result")) {
+                    OutputView.outputLadder(ladderGameResult);
+                    continue;
+                }
+                if (want.replaceAll(" *", "").replaceAll(",,*", ",").replaceAll("^,|,$", "")
+                    .contains(",")) {
+                    OutputView.outputResultByParticipants(ladderGameResult, new Participants(want));
+                    continue;
+                }
+                OutputView.outputResultByParticipant(ladderGameResult, new Participant(want));
+            } catch (Exception e) {
+                OutputView.exceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private static Participants makeParticipants() {
