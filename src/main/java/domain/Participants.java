@@ -35,7 +35,6 @@ public class Participants implements Items {
     }
 
 
-
     private List<Participant> makeParticipantName(List<String> splitNames) {
         List<Participant> participants = new ArrayList<>();
         for (String splitName : splitNames) {

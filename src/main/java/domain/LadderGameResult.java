@@ -9,13 +9,14 @@ public class LadderGameResult {
     private final Participants gameParticipants;
     private final Products gameProducts;
     private final Ladder gameLadder;
-    private final Map<Item, Item> gameResult;
+    private final Map<Item, Item> gameMatching;
 
-    public LadderGameResult(Participants gameParticipants, Products gameProducts, Ladder gameLadder) {
+    public LadderGameResult(Participants gameParticipants, Products gameProducts,
+        Ladder gameLadder) {
         this.gameParticipants = gameParticipants;
         this.gameProducts = gameProducts;
         this.gameLadder = gameLadder;
-        this.gameResult = calc(gameParticipants, gameProducts, gameLadder);
+        this.gameMatching = getMatching(gameParticipants, gameProducts, gameLadder);
     }
 
     public Participants getGameParticipants() {
@@ -30,7 +31,8 @@ public class LadderGameResult {
         return gameLadder;
     }
 
-    private Map<Item, Item> calc(Participants participants, Products products, Ladder ladder) {
+    private Map<Item, Item> getMatching(Participants participants, Products products,
+        Ladder ladder) {
         Map<Item, Item> names = new LinkedHashMap<>();
         int size = participants.getNames().size();
         for (int i = 0; i < size; i++) {
@@ -59,7 +61,7 @@ public class LadderGameResult {
     }
 
     public Map<Item, Item> getResultAll() {
-        return gameResult;
+        return gameMatching;
     }
 
     public Map<Item, Item> getResultByParticipants(Participants participants) {
@@ -73,9 +75,9 @@ public class LadderGameResult {
 
     public Map<Item, Item> getResultNotDummy() {
         Map<Item, Item> result = new LinkedHashMap<>();
-        for(Item item : gameResult.keySet()) {
-            if(!this.gameResult.get(item).getName().equals("X")) {
-                result.put(item, gameResult.get(item));
+        for (Item item : gameMatching.keySet()) {
+            if (!this.gameMatching.get(item).getName().equals("X")) {
+                result.put(item, gameMatching.get(item));
             }
         }
         return result;
@@ -85,11 +87,13 @@ public class LadderGameResult {
         List<Item> items = gameParticipants.getItems();
         Map<Item, Item> result = new LinkedHashMap<>();
         if (!items.contains(participant)) {
-            throw new IllegalArgumentException("없잖아!!!");
+            throw new IllegalArgumentException(
+                "해당 사용자(".concat(participant.getName()).concat(")는 참가하지 않았습니다.\n참가자들 :  ")
+                    .concat(String.join(", ", gameParticipants.getNames())));
         }
-        for(Item item : gameParticipants.getItems()) {
-            if(participant.equals(item)) {
-                result.put(item, gameResult.get(item));
+        for (Item item : gameParticipants.getItems()) {
+            if (participant.equals(item)) {
+                result.put(item, gameMatching.get(item));
             }
         }
         return result;

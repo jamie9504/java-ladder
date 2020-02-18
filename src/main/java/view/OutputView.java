@@ -37,14 +37,17 @@ public class OutputView {
     private static String formattingName(List<Item> items, int nameLengthFormatCriteria) {
         StringBuilder formattingNames = new StringBuilder();
         for (Item item : items) {
-            int blankCount = (nameLengthFormatCriteria - item.getNameSize()) / 2 + 1;
-            String blankBetween = String
-                .format("%".concat(String.valueOf(blankCount)).concat("s"), BLANK);
-            formattingNames.append(SQUARE_BRACKETS_OPEN)
-                .append(blankBetween)
-                .append(item.getName())
-                .append(blankBetween)
-                .append(SQUARE_BRACKETS_CLOSE)
+            int beforeCount = (nameLengthFormatCriteria - item.getNameSize()) / 2;
+            formattingNames.append(SQUARE_BRACKETS_OPEN);
+            String beforeBlank = String
+                .format("%".concat(String.valueOf(1 + beforeCount)).concat("s"), BLANK);
+            formattingNames.append(beforeBlank);
+            formattingNames.append(item.getName());
+            int afterCount = nameLengthFormatCriteria - item.getNameSize() - beforeCount;
+            String afterBlank = String
+                .format("%".concat(String.valueOf(1 + afterCount)).concat("s"), BLANK);
+            formattingNames.append(afterBlank);
+            formattingNames.append(SQUARE_BRACKETS_CLOSE)
                 .append(BLANK);
         }
         return formattingNames.toString();
@@ -73,7 +76,7 @@ public class OutputView {
 
     private static String formattingLadderProperties(LegProperties legProperties,
         int nameLengthFormatCriteria) {
-        int betweenSignCount = (nameLengthFormatCriteria + 4) / 2;
+        int betweenSignCount = (nameLengthFormatCriteria + 5) / 2 - 1;
         String blankLeg = String
             .format("%".concat(String.valueOf(betweenSignCount)).concat("s"), MAKE_LEG_NO_SIGN);
         String hyphenLeg = blankLeg.replace(MAKE_LEG_NO_SIGN, MAKE_LEG_YES_SIGN);

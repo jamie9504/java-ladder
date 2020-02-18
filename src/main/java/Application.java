@@ -13,17 +13,25 @@ import view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        Participants participants = makeParticipants();
-        Products products = makeProducts(participants);
-        LadderSize ladderHeight = makeLadderHeight();
+        start();
+    }
 
-        LadderGameResult ladderGameResult = LadderGame.start(participants, products, ladderHeight);
+    private static void start() {
+        boolean restart = true;
+        while (restart) {
+            Participants participants = makeParticipants();
+            Products products = makeProducts(participants);
+            LadderSize ladderHeight = makeLadderHeight();
 
-        afterGame(ladderGameResult);
+            LadderGameResult ladderGameResult = LadderGame
+                .start(participants, products, ladderHeight);
+
+            restart = afterGame(ladderGameResult);
+        }
 
     }
-    
-    private static void afterGame(LadderGameResult ladderGameResult) {
+
+    private static boolean afterGame(LadderGameResult ladderGameResult) {
         OutputView.outputLadder(ladderGameResult);
         while (true) {
             try {
@@ -37,7 +45,11 @@ public class Application {
                     continue;
                 }
                 if (want.equalsIgnoreCase("finish")) {
-                    return;
+                    return false;
+                }
+                if (want.equalsIgnoreCase("restart")) {
+                    OutputView.exceptionMessage("게임을 재실행합니다.");
+                    return true;
                 }
                 if (want.equalsIgnoreCase("result")) {
                     OutputView.outputLadder(ladderGameResult);

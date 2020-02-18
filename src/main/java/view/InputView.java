@@ -44,6 +44,7 @@ public class InputView {
         System.out.println("원하는 사람 매칭만 보기 - 사람 이름 입력 (, 구분자)");
         System.out.println("당첨항목 매칭만 보기(X 제외) - OK");
         System.out.println("종료 - finish");
+        System.out.println("재시작 - restart");
         System.out.println("---------------------------------------");
         System.out.print(": ");
         return scanner.nextLine();
