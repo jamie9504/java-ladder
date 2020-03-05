@@ -9,12 +9,8 @@ public class Ladder {
     private static final Random random = new Random();
 
     private final List<List<LegProperties>> ladder;
-    private final LadderSize height;
-    private final LadderSize width;
 
     public Ladder(LadderSize height, LadderSize width) {
-        this.height = height;
-        this.width = width;
         this.ladder = makeLadderByHeight(height.getSize(), width.getSize());
     }
 
@@ -52,13 +48,5 @@ public class Ladder {
 
     public List<List<LegProperties>> getLadder() {
         return ladder;
-    }
-
-    public int getHeight() {
-        return height.getSize();
-    }
-
-    public int getWidth() {
-        return width.getSize();
     }
 }

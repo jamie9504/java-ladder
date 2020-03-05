@@ -28,11 +28,4 @@ public class LadderTest {
         assertThat(ladder.get(4).get(4).getMoving()).isBetween(-1, 1);
     }
 
-    @DisplayName("사다리 사이즈 검증")
-    @Test
-    void getLadderSize() {
-        ladderObject.getHeight();
-        assertThat(ladderObject.getHeight()).isEqualTo(height.getSize());
-        assertThat(ladderObject.getWidth()).isEqualTo(width.getSize());
-    }
 }
