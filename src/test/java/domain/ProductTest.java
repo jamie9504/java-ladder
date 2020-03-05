@@ -33,6 +33,6 @@ public class ProductTest {
     @Test
     void getProductionNameSize() {
         Product product = new Product("제이미");
-        assertThat(product.getNameSize()).isBetween(3, 5);
+        assertThat(product.getNameSize()).isBetween(3, 6);
     }
 }

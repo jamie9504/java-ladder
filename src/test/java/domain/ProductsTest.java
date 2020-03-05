@@ -25,8 +25,9 @@ public class ProductsTest {
         assertThat(products.getNames().get(0)).isEqualTo("제일미");
         assertThat(products.getNames().get(1)).isEqualTo("제이미");
         assertThat(products.getNames().get(2)).isEqualTo("제삼미");
-        assertThat(products.getNames().get(3)).isEqualTo("제 사 미");
+        assertThat(products.getNames().get(3)).isEqualTo("제사미");
         assertThat(products.getNames().get(4)).isEqualTo("제오미");
+
     }
 
     @DisplayName("상품의 개수를 확인")

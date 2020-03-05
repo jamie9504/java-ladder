@@ -20,7 +20,7 @@ public class ParticipantTest {
 
     @DisplayName("참가자 이름이 1글자 미만이거나 5글자를 초과인 경우 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"", "제일미제이미"})
+    @ValueSource(strings = {"", "제일미제이미제삼미제사"})
     void exceptionParticipantName(String name) {
         assertThatThrownBy(() -> new Participant(name))
             .isInstanceOf(IllegalArgumentException.class)

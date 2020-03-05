@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Participants implements Items {
 
@@ -34,13 +35,10 @@ public class Participants implements Items {
         }
     }
 
-
     private List<Participant> makeParticipantName(List<String> splitNames) {
-        List<Participant> participants = new ArrayList<>();
-        for (String splitName : splitNames) {
-            participants.add(new Participant(splitName));
-        }
-        return participants;
+        return splitNames.stream()
+            .map(Participant::new)
+            .collect(Collectors.toList());
     }
 
     private void validCountMoreThanOrEqualTo(List<String> splitNames) {

@@ -3,8 +3,8 @@ package domain;
 import static util.SplitAndRefine.splitExceptJustBlankWithDelimiter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Products implements Items {
 
@@ -36,20 +36,16 @@ public class Products implements Items {
     }
 
     private List<Product> makeProductName(List<String> splitNames) {
-        List<Product> products = new ArrayList<>();
-        for (String splitName : splitNames) {
-            products.add(new Product(splitName));
-        }
-        return products;
+        return splitNames.stream()
+            .map(Product::new)
+            .collect(Collectors.toList());
     }
 
     @Override
     public List<String> getNames() {
-        List<String> productNames = new ArrayList<>();
-        for (Product product : products) {
-            productNames.add(product.getName());
-        }
-        return productNames;
+        return products.stream()
+            .map(Product::getName)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -59,19 +55,14 @@ public class Products implements Items {
 
     @Override
     public int getMaxNameSize() {
-        List<Integer> nameSizes = new ArrayList<>();
-        for (Product product : products) {
-            nameSizes.add(product.getNameSize());
-        }
-        return Collections.max(nameSizes);
+        return products.stream()
+            .map(Product::getNameSize)
+            .max(Integer::compareTo)
+            .orElse(0);
     }
 
     @Override
     public List<Item> getItems() {
-        List<Item> items = new ArrayList<>();
-        for (Product product : products) {
-            items.add(product);
-        }
-        return items;
+        return new ArrayList<>(products);
     }
 }
